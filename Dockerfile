@@ -1,4 +1,4 @@
-FROM golang:1.24-alpine AS builder
+FROM golang:1.25.12-alpine AS builder
 WORKDIR /app
 
 RUN apk add --no-cache git
@@ -13,7 +13,7 @@ RUN CGO_ENABLED=0 GOOS=linux \
 
 RUN CGO_ENABLED=0 GOOS=linux \
     go build -ldflags="-w -s" -trimpath \
-      -o migrate cmd/migrate/main.go
+      -o migrate ./cmd/migrate
 
 FROM ghcr.io/typst/typst:v0.13.1 AS typst
 
