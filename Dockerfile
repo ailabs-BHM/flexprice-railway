@@ -36,7 +36,7 @@ COPY <<'ENTRYPOINT' /app/entrypoint.sh
 set -e
 
 echo "Running Ent migrations..."
-/app/migrate --timeout 300 || echo "Migration failed, continuing..."
+/app/migrate postgres --timeout 300
 
 echo "Starting server..."
 exec /app/server
