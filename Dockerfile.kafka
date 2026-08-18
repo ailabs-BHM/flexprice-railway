@@ -1,0 +1,11 @@
+FROM apache/kafka@sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837
+
+# Railway volumes are mounted as root. The upstream image runs Kafka as
+# appuser (uid 1000), so prepare the mounted log directory as root and then
+# drop privileges before invoking the unmodified Apache startup script.
+USER root
+
+COPY kafka-railway-entrypoint.sh /usr/local/bin/kafka-railway-entrypoint
+RUN chmod 0755 /usr/local/bin/kafka-railway-entrypoint
+
+CMD ["/usr/local/bin/kafka-railway-entrypoint"]
