@@ -35,6 +35,7 @@ COPY <<'ENTRYPOINT' /app/entrypoint.sh
 #!/bin/sh
 set -e
 
+# Apply the database schema before accepting traffic.
 echo "Running Ent migrations..."
 /app/migrate postgres --timeout 300
 
