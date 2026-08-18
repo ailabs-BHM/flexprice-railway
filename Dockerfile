@@ -3,7 +3,13 @@ WORKDIR /app
 
 RUN apk add --no-cache git
 
-RUN git clone --depth 1 https://github.com/flexprice/flexprice.git .
+ARG FLEXPRICE_SOURCE_REPOSITORY=https://github.com/BHM-Ailabs/flexprice.git
+ARG FLEXPRICE_SOURCE_REF=83ba98f669c9dc252064152e975104aef9e599c7
+
+RUN git init . \
+    && git remote add origin "$FLEXPRICE_SOURCE_REPOSITORY" \
+    && git fetch --depth 1 origin "$FLEXPRICE_SOURCE_REF" \
+    && git checkout --detach FETCH_HEAD
 
 RUN go mod download
 
