@@ -45,6 +45,9 @@ set -e
 echo "Running Ent migrations..."
 /app/migrate postgres --timeout 300
 
+echo "Running ClickHouse migrations..."
+/app/migrate clickhouse --timeout 300
+
 echo "Starting server..."
 exec /app/server
 ENTRYPOINT
