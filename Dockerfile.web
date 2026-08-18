@@ -1,0 +1,19 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+RUN apk add --no-cache git
+
+ARG FLEXPRICE_FRONT_SOURCE_REPOSITORY=https://github.com/BHM-Ailabs/flexprice-front.git
+ARG FLEXPRICE_FRONT_SOURCE_REF=50fe7b64f965e87ff932fa9db1cc4eda137a78d6
+
+RUN git init . \
+    && git remote add origin "$FLEXPRICE_FRONT_SOURCE_REPOSITORY" \
+    && git fetch --depth 1 origin "$FLEXPRICE_FRONT_SOURCE_REF" \
+    && git checkout --detach FETCH_HEAD
+
+RUN npm ci
+RUN npm run build
+
+EXPOSE 3000
+CMD ["npm", "run", "start"]
