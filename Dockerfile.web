@@ -6,7 +6,14 @@ WORKDIR /app
 RUN apk add --no-cache git
 
 ARG FLEXPRICE_FRONT_SOURCE_REPOSITORY=https://github.com/BHM-Ailabs/flexprice-front.git
-ARG FLEXPRICE_FRONT_SOURCE_REF=0af305b586634a1050414075c4651f5468c549e8
+ARG FLEXPRICE_FRONT_SOURCE_REF=933c51740f7cdb6c6785a93fbcc8259bef27bbc3
+
+# Railway exposes service variables to Docker builds as build arguments when
+# they are declared here. The client ID is public; the confidential client
+# secret remains API-runtime-only and must never be declared in this image.
+ARG VITE_PLAQAD_AUTH_ENABLED=false
+ARG VITE_PLAQAD_AUTH_URL=https://account-api.plaqad.com
+ARG VITE_PLAQAD_CLIENT_ID
 
 RUN git init . \
     && git remote add origin "$FLEXPRICE_FRONT_SOURCE_REPOSITORY" \
