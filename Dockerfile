@@ -4,7 +4,7 @@ WORKDIR /app
 RUN apk add --no-cache git
 
 ARG FLEXPRICE_SOURCE_REPOSITORY=https://github.com/BHM-Ailabs/flexprice.git
-ARG FLEXPRICE_SOURCE_REF=0f5600ded1fafb5d9d74d350d72d528d11ccd7a8
+ARG FLEXPRICE_SOURCE_REF=02cf354401c82cb3c7514d4b88cdf065c99549e2
 
 RUN git init . \
     && git remote add origin "$FLEXPRICE_SOURCE_REPOSITORY" \
