@@ -4,7 +4,7 @@ WORKDIR /app
 RUN apk add --no-cache git
 
 ARG FLEXPRICE_SOURCE_REPOSITORY=https://github.com/BHM-Ailabs/flexprice.git
-ARG FLEXPRICE_SOURCE_REF=b68f4279f819e2303dfb716eb535eef4948c763e
+ARG FLEXPRICE_SOURCE_REF=eb17ed0b498b383a26f291093c7c851de8edf91b
 
 RUN git init . \
     && git remote add origin "$FLEXPRICE_SOURCE_REPOSITORY" \
@@ -26,7 +26,7 @@ FROM ghcr.io/typst/typst:v0.13.1 AS typst
 FROM alpine:3.20
 WORKDIR /app
 
-RUN apk add --no-cache ca-certificates postgresql-client
+RUN apk add --no-cache ca-certificates postgresql-client ffmpeg
 
 COPY --from=builder /app/server /app/server
 COPY --from=builder /app/migrate /app/migrate
