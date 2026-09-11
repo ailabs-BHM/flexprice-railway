@@ -6,7 +6,7 @@ WORKDIR /app
 RUN apk add --no-cache git
 
 ARG FLEXPRICE_FRONT_SOURCE_REPOSITORY=https://github.com/BHM-Ailabs/flexprice-front.git
-ARG FLEXPRICE_FRONT_SOURCE_REF=88e1b765280330b045eeaf032f70cbfd3e497afb
+ARG FLEXPRICE_FRONT_SOURCE_REF=1a508e2394f1d41a451f356201330605d916165d
 
 # Railway exposes service variables to Docker builds as build arguments when
 # they are declared here. The client ID is public; the confidential client
